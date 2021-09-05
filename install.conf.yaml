@@ -3,11 +3,26 @@
 - link:
     ~/.gitconfig: gitconfig
     ~/.zshrc: zshrc
+    ~/.zsh_profile: zsh_profile
     ~/.Xmodmap: Xmodmap
     ~/.Xresources: Xresources
     ~/.xinitrc: xinitrc
+    ~/.nanorc: nanorc
     ~/.config/i3:
         path: config/i3/
         create: true
-
-
+    ~/.config/i3status-rust:
+        path: config/i3status-rust/
+        create: true
+    ~/.config/mpv:
+        path: config/mpv/
+        create: true
+    ~/.config/htop:
+        path: config/htop/
+        create: true
+    ~/.config/picom:
+        path: config/picom/
+        create: true
+    ~/.config/rofi:
+        path: config/rofi/
+        create: true
