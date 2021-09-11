@@ -1,3 +1,8 @@
+- defaults:
+    link:
+        create: true
+        force: true
+
 - clean: ['~']
 
 - link:
@@ -25,4 +30,16 @@
         create: true
     ~/.config/rofi:
         path: config/rofi/
+        create: true
+    ~/.config/ranger:
+        path: config/ranger/
+        create: true
+    ~/.config/sxiv:
+        path: config/sxiv/
+        create: true
+    ~/.config/dunst:
+        path: config/dunst/
+        create: true
+    ~/.config/gtk-3.0:
+        path: config/gtk-3.0/
         create: true
