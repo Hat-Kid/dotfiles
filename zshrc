@@ -50,6 +50,7 @@ SAVEHIST=$HISTSIZE
 alias zshcfg="$EDITOR ~/.zshrc"
 alias i3cfg="$EDITOR ~/.config/i3/config"
 alias i3statuscfg="$EDITOR ~/.config/i3status-rust/config.toml"
+alias fstab="sudo $EDITOR /etc/fstab"
 alias sudo="sudo "
 alias piserver="ssh ubuntu@192.168.2.120 -p 255"
 alias audiodevices="pacmd list-sinks | grep -e 'name:' -e 'index:'"
