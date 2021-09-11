@@ -1,0 +1,10 @@
+#!/bin/sh
+secondsdec=$(awk '{print $1}' /proc/uptime)
+
+seconds=$(printf %.0f $secondsdec)
+
+hh=$((seconds / 3600))
+mm=$(((seconds / 60) % 60))
+ss=$((seconds % 60))
+
+printf "%02d:%02d:%02d\n" $hh $mm $ss

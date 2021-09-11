@@ -6,6 +6,9 @@
 - clean: ['~']
 
 - link:
+    ~/.scripts:
+        path: scripts/
+        create: true
     ~/.gitconfig: gitconfig
     ~/.zshrc: zshrc
     ~/.zsh_profile: zsh_profile

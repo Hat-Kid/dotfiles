@@ -1,0 +1,9 @@
+#!/bin/zsh
+tmp="/tmp/tmp.png"
+
+if [[ "$1" =~ ".*\.jpeg" ]] || [[ "$1" =~ ".*\.jpg" ]]; then
+    convert "$1" "$tmp"; xclip -selection clipboard -t image/png "$tmp"
+    rm /tmp/tmp.png
+elif [[ "$1" =~ ".*\.png" ]]; then
+    xclip -selection clipboard -t image/png "$1"
+fi

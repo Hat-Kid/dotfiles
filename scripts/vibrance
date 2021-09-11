@@ -1,0 +1,2 @@
+#!/bin/zsh
+nvidia-settings -a "DigitalVibrance=1023"

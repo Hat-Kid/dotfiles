@@ -1,0 +1,12 @@
+#!/bin/zsh
+bg=$(ls ~/Pictures/Backgrounds/*.(png|jpg|jpeg) | sxiv -tio)
+
+if [[ -z $bg ]]; then
+    echo "You have to select an image!"
+    exit 1
+elif ! [[ $bg =~ '^\/home\/philip\/Pictures\/Backgrounds\/.*\.(png|jpg|jpeg)$'  ]]; then
+    echo "Only select one image!"
+    exit 2
+else
+    feh --bg-scale $bg
+fi

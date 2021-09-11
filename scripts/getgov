@@ -1,0 +1,16 @@
+#!/bin/sh
+gov=$(cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor)
+
+if [ "$gov" = "performance" ]; then
+    echo "perf"
+elif [ "$gov" = "powersave" ]; then
+    echo "pwr"
+elif [ "$gov" = "conservative" ]; then
+    echo "cons"
+elif [ "$gov" = "userspace" ]; then
+    echo "usersp"
+elif [ "$gov" = "schedutil" ]; then
+    echo "sched"
+elif [ "$gov" = "ondemand" ]; then
+    echo "dem"
+fi

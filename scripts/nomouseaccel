@@ -1,0 +1,11 @@
+#!/bin/zsh
+mouseid=$(xinput | grep 'Logitech G Pro' | grep pointer | cut -d '=' -f 2 | cut -f 1)
+#accelprop=$(xinput --list-props $mouseid | grep -m1 'Accel Profile Enabled')
+
+if [[ "$mouseid" =~ "^[0-9]+$" ]]; then
+    xinput --set-prop $mouseid 'libinput Accel Profile Enabled' 0, 1
+#else
+    #${mouseid//?\n/}
+    #echo $mouseid | sed 's/.\\n//'
+    #xinput --set-prop $mouseid 'libinput Accel Profile Enabled' 0, 1
+fi

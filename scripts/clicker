@@ -1,0 +1,2 @@
+#!/bin/sh
+killall xdotool || while xdotool click --repeat 10 --delay 12 1; do :; done

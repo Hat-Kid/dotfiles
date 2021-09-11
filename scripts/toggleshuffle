@@ -1,0 +1,13 @@
+#!/bin/sh
+status=$(playerctl --player=vlc shuffle)
+
+if [[ "$status" = "On" ]]; then
+    playerctl --player=vlc shuffle "Off"
+    dunstify "Shuffle OFF"
+elif [[ "$status" = "Off" ]]; then
+    playerctl --player=vlc shuffle "On"
+    dunstify "Shuffle ON"
+elif [[ "$status" = "No player found" ]]; then
+    dunstify "No player found"
+    exit 1
+fi
