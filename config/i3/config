@@ -196,6 +196,10 @@ exec --no-startup-id gpufancurve
 exec --no-startup-id dunst
 exec --no-startup-id sudo cpupower frequency-set powersave
 
+exec --no-startup-id xset s off
+exec --no-startup-id xset -dpms
+exec --no-startup-id xset s noblank
+
 # Move current workspace to other monitor
 bindsym $mod+Tab exec python /home/philip/.scripts/cycle-workspace.py
 
