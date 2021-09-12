@@ -47,6 +47,10 @@ PYGMENTIZE_STYLE=${PYGMENTIZE_STYLE:-autumn}
 OPENSCAD_IMGSIZE=${RNGR_OPENSCAD_IMGSIZE:-1000,1000}
 OPENSCAD_COLORSCHEME=${RNGR_OPENSCAD_COLORSCHEME:-Tomorrow Night}
 
+if [ "$(stat --file-system --format=%T $FILE_PATH)" == "smb2" ]; then
+    exit 1
+fi
+
 handle_extension() {
     case "${FILE_EXTENSION_LOWER}" in
         ## Archive
