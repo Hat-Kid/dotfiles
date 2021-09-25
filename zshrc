@@ -11,7 +11,7 @@ HIST_STAMPS="dd.mm.yyyy"
 
 set -o extendedglob
 
-plugins=(git zshmarks colorize colored-man-pages)
+plugins=(git zshmarks zsh-completions colorize colored-man-pages)
 source $ZSH/oh-my-zsh.sh
 
 export MANPATH="/usr/local/man:$MANPATH"
