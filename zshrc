@@ -1,4 +1,4 @@
-export PATH=$PATH:$HOME/.scripts:$HOME/bin
+export PATH=$PATH:$HOME/.scripts:$HOME/bin:$HOME/.local/bin
 export ZSH="/home/philip/.oh-my-zsh"
 
 # https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
@@ -66,3 +66,6 @@ alias goto="jump"
 alias bm="bookmark"
 alias d="deletemark"
 alias p="showmarks"
+
+bashcompinit
+source /home/philip/code/git/vcpkg/scripts/vcpkg_completion.zsh
