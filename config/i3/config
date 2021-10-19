@@ -191,7 +191,7 @@ exec_always --no-startup-id autotiling
 exec --no-startup-id picom -b --config ~/.config/picom/picom.conf
 #exec --no-startup-id xmodmap ~/.Xmodmap
 exec --no-startup-id setxkbmap de
-exec --no-startup-id feh --bg-fill ~/Pictures/Backgrounds/yuyu.png
+exec --no-startup-id feh --bg-fill ~/Pictures/Backgrounds/road_to_samarkand.jpg
 exec --no-startup-id nomouseaccel
 exec --no-startup-id vibrance
 exec --no-startup-id gpufancurve
