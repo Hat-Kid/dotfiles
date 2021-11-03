@@ -1,3 +1,4 @@
+export TERMINAL=kitty
 export PATH=$PATH:$HOME/.scripts:$HOME/bin:$HOME/.local/bin
 export ZSH="/home/philip/.oh-my-zsh"
 

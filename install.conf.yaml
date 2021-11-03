@@ -46,3 +46,6 @@
     ~/.config/gtk-3.0:
         path: config/gtk-3.0/
         create: true
+    ~/.config/kitty:
+        path: config/kitty/
+        create: true
