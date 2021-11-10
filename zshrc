@@ -43,11 +43,20 @@ setopt HIST_IGNORE_DUPS
 HISTSIZE=100000
 SAVEHIST=$HISTSIZE
 
-#. ~/.dir_bookmarks
-. ~/.playlists
-. "/usr/share/LS_COLORS/dircolors.sh"
+if [[ -f ~/.playlists ]]; then
+    . ~/.playlists
+fi
+
+if [[ -f /usr/share/LS_COLORS/dircolors.sh ]]; then
+    . "/usr/share/LS_COLORS/dircolors.sh"
+fi
 
 # For a full list of active aliases, run `alias`.
+
+if [ "$TERMINAL" = "kitty" ]; then
+    alias ssh="kitty +kitten ssh"
+fi
+
 alias zshcfg="$EDITOR ~/.zshrc"
 alias i3cfg="$EDITOR ~/.config/i3/config"
 alias i3statuscfg="$EDITOR ~/.config/i3status-rust/config.toml"
