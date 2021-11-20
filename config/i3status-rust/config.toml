@@ -76,6 +76,10 @@ command = "printf 'up: ' && sysuptime"
 interval = 1
 
 [[block]]
+block = "custom"
+command = "uname -r"
+
+[[block]]
 block = "time"
 interval = 1
 format = "%d.%m.%Y %H:%M:%S"
