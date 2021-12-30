@@ -1,6 +1,7 @@
 export TERMINAL=kitty
 export PATH=$PATH:$HOME/.scripts:$HOME/bin:$HOME/.local/bin
 export ZSH="/home/philip/.oh-my-zsh"
+export DOTNET_CLI_TELEMETRY_OUTPUT=1
 
 # https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="philips"
@@ -79,3 +80,12 @@ alias p="showmarks"
 
 bashcompinit
 source /home/philip/code/git/vcpkg/scripts/vcpkg_completion.zsh
+
+_dotnet_zsh_complete()
+{
+  local completions=("$(dotnet complete "$words")")
+
+  reply=( "${(ps:\n:)completions}" )
+}
+
+compctl -K _dotnet_zsh_complete dotnet
