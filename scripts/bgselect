@@ -9,4 +9,7 @@ elif ! [[ $bg =~ '^\/home\/philip\/Pictures\/Backgrounds\/.*\.(png|jpg|jpeg)$'  
     exit 2
 else
     feh --bg-scale $bg
+    ext=$bg:t:e
+    rm $(ls ~/Pictures/curbg/bg.*)
+    cp -r "$bg" "/home/philip/Pictures/curbg/bg.$ext"
 fi
