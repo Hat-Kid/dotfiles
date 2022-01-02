@@ -16,6 +16,9 @@ set -o extendedglob
 plugins=(git zshmarks zsh-autosuggestions zsh-completions colorize colored-man-pages)
 source $ZSH/oh-my-zsh.sh
 
+autoload -U compinit
+compinit
+
 export MANPATH="/usr/local/man:$MANPATH"
 export LANG=en_US.UTF-8
 
