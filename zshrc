@@ -91,6 +91,7 @@ alias srn="sudo reboot now"
 alias printeron="sudo systemctl start cups.service"
 alias printeroff="sudo systemctl stop cups.service"
 alias startx="startx ~/.xinitrc"
+alias hg="kitty +kitten hyperlinked_grep"
 
 alias goto="jump"
 alias bm="bookmark"
