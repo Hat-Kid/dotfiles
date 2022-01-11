@@ -5,6 +5,7 @@ export ZSH="/home/philip/.oh-my-zsh"
 export DOTNET_CLI_TELEMETRY_OUTPUT=1
 export EDITOR="vim"
 export VISUAL="emacsclient -c"
+export THCRAP_DIR="/mnt/HDD/game/touhou/game/thcrap"
 
 # https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="philips"

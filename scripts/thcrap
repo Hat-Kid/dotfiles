@@ -1,0 +1,16 @@
+#!/bin/zsh
+cd $THCRAP_DIR
+
+if [ -z "$(ps aux | grep '[w]inediscordrpcbridge.exe')" ]; then
+    screen -dm -S "wineipc" wine ../touhourpc/winediscordipcbridge.exe &
+fi
+
+sleep 1
+
+if [ -z "$(ps aux | grep '[T]ouhouRPC.exe')" ] ; then
+    screen -dm -S "TouhouRPC" wine ../touhourpc/TouhouRPC.exe &
+fi
+
+sleep 2
+
+wine thcrap_loader.exe "$2" $1
