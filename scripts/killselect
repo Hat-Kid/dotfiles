@@ -1,0 +1,2 @@
+#!/bin/sh
+xkill -id $(xwininfo | grep "Window id" | grep -oE "0x[0-9a-f]+")

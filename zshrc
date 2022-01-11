@@ -1,7 +1,10 @@
-export TERMINAL=kitty
-export PATH=$PATH:$HOME/.scripts:$HOME/bin:$HOME/.local/bin
+export TERMINAL=xterm-kitty
+export TERM=xterm-kitty
+export PATH=$PATH:$HOME/.scripts:$HOME/bin:$HOME/.local/bin:$HOME/.emacs.d/bin
 export ZSH="/home/philip/.oh-my-zsh"
 export DOTNET_CLI_TELEMETRY_OUTPUT=1
+export EDITOR="vim"
+export VISUAL="emacsclient -c"
 
 # https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="philips"
@@ -13,7 +16,7 @@ HIST_STAMPS="dd.mm.yyyy"
 
 set -o extendedglob
 
-plugins=(git zshmarks zsh-autosuggestions zsh-completions colorize colored-man-pages)
+plugins=(git autoupdate zshmarks zsh-autosuggestions zsh-completions colorize colored-man-pages zsh-syntax-highlighting)
 source $ZSH/oh-my-zsh.sh
 
 autoload -U compinit
@@ -24,9 +27,9 @@ export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='nano'
+  export EDITOR='vim'
 else
-  export EDITOR='nano'
+  export EDITOR='vim'
 fi
 
 if type clipcat-menu >/dev/null 2>&1; then
@@ -60,6 +63,19 @@ fi
 if [ "$TERMINAL" = "kitty" ]; then
     alias ssh="kitty +kitten ssh"
 fi
+
+lfcd () 
+{
+    tmp="$(mktemp)"
+    lf -last-dir-path="$tmp" "$@"
+    if [ -f "$tmp" ]; then
+        dir="$(cat "$tmp")"
+        rm -f "$tmp"
+        [ -d "$dir" ] && [ "$dir" != "$(pwd)" ] && cd "$dir"
+    fi
+}
+
+bindkey -s '^o' 'lfcd\n'
 
 alias zshcfg="$EDITOR ~/.zshrc"
 alias i3cfg="$EDITOR ~/.config/i3/config"
