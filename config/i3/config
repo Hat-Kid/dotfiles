@@ -145,7 +145,7 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        font pango:DejaVu Sans Mono, FontAwesome 12
+        font pango:Noto Sans Mono, FontAwesome 12.5
 
         status_command /usr/bin/i3status-rs /home/philip/.config/i3status-rust/config.toml
         position top
@@ -201,6 +201,7 @@ exec --no-startup-id vibrance
 exec --no-startup-id gpufancurve
 exec --no-startup-id dunst
 exec --no-startup-id sudo cpupower frequency-set powersave
+#exec --no-startup-id fcitx -d
 
 exec --no-startup-id xset s off
 exec --no-startup-id xset -dpms
@@ -215,6 +216,7 @@ bindsym ctrl+shift+m exec --no-startup-id toggleaudiodevice
 #bindsym $mod+t exec --no-startup-id i3-sensible-terminal -e ranger
 bindsym $mod+t exec --no-startup-id thunar
 bindsym $mod+b exec --no-startup-id bgselect
+#bindsym $mod+e exec --no-startup-id emacsclient -c -a emacs
 
 exec_always --no-startup-id clipcatd
 
