@@ -1,5 +1,11 @@
 [theme]
-name = "gruvbox-dark"
+name = "native"
+[theme.overrides]
+good_bg = "#4A8B3F"
+idle_fg = "#FFFFFF"
+info_bg = "#B46442"
+warning_bg = "#FDD500"
+critical_bg = "#F44747"
 [icons]
 name = "awesome"
 
@@ -46,12 +52,21 @@ format_swap = "{swap_used} /{swap_total}"
 interval = 2
 
 [[block]]
+block = "disk_space"
+path = "/"
+info_type = "used"
+format = "{icon} {used} /{total}"
+unit = "GB"
+alert = 90
+warning = 80
+
+[[block]]
 block = "music"
 #player = "mpd"
 player = "vlc"
 hide_when_empty = true
-format = " {title} | {player} "
-buttons = ["play", "next"]
+format = "{title}"
+buttons = ["play"]
 
 [[block]]
 block = "sound"
