@@ -3,9 +3,12 @@ export TERM=xterm-kitty
 export PATH=$PATH:$HOME/.scripts:$HOME/bin:$HOME/.local/bin:$HOME/.emacs.d/bin
 export ZSH="/home/philip/.oh-my-zsh"
 export DOTNET_CLI_TELEMETRY_OUTPUT=1
-export EDITOR="vim"
-export VISUAL="emacsclient -c"
+export EDITOR="nvim"
+export VISUAL="nvim"
 export THCRAP_DIR="/mnt/HDD/game/touhou/game/thcrap"
+export QT_IM_MODULE=fcitx
+export XMODIFIERS=@im=fcitx
+export GTK_IM_MODULE=fcitx
 
 # https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="philips"
@@ -28,9 +31,9 @@ export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='vim'
+  export EDITOR='nvim'
 else
-  export EDITOR='vim'
+  export EDITOR='nvim'
 fi
 
 if type clipcat-menu >/dev/null 2>&1; then
@@ -79,6 +82,7 @@ lfcd ()
 bindkey -s '^o' 'lfcd\n'
 
 alias zshcfg="$EDITOR ~/.zshrc"
+alias vimcfg="$EDITOR ~/.config/nvim/init.vim"
 alias i3cfg="$EDITOR ~/.config/i3/config"
 alias i3statuscfg="$EDITOR ~/.config/i3status-rust/config.toml"
 alias fstab="sudo $EDITOR /etc/fstab"
@@ -93,6 +97,7 @@ alias printeron="sudo systemctl start cups.service"
 alias printeroff="sudo systemctl stop cups.service"
 alias startx="startx ~/.xinitrc"
 alias hg="kitty +kitten hyperlinked_grep"
+alias ccat="highlight -O ansi"
 
 alias goto="jump"
 alias bm="bookmark"
