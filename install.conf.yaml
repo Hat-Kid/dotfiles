@@ -13,17 +13,22 @@
     ~/.zshrc: zshrc
     ~/.zsh_profile: zsh_profile
     ~/.Xmodmap: Xmodmap
-    ~/.Xresources: Xresources
     ~/.xinitrc: xinitrc
     ~/.nanorc: nanorc
+    ~/.config/nvim/init.vim:
+        path: config/nvim/init.vim
+        create: true
     ~/.config/i3:
         path: config/i3/
         create: true
     ~/.config/i3status-rust:
         path: config/i3status-rust/
         create: true
-    ~/.config/mpv:
-        path: config/mpv/
+    ~/.config/mpv/mpv.conf:
+        path: config/mpv/mpv.conf
+        create: true
+    ~/.config/mpv/input.conf:
+        path: config/mpv/input.conf
         create: true
     ~/.config/htop:
         path: config/htop/
@@ -34,8 +39,8 @@
     ~/.config/rofi:
         path: config/rofi/
         create: true
-    ~/.config/ranger:
-        path: config/ranger/
+    ~/.config/ranger/rc.conf:
+        path: config/ranger/rc.conf
         create: true
     ~/.config/sxiv:
         path: config/sxiv/
@@ -43,9 +48,24 @@
     ~/.config/dunst:
         path: config/dunst/
         create: true
-    ~/.config/gtk-3.0:
-        path: config/gtk-3.0/
+    ~/.config/gtk-3.0/settings.ini:
+        path: config/gtk-3.0/settings.ini
         create: true
-    ~/.config/kitty:
-        path: config/kitty/
+    ~/.config/gtk-3.0/colors.css:
+        path: config/gtk-3.0/colors.css
+        create: true
+    ~/.config/gtk-3.0/gtk.css:
+        path: config/gtk-3.0/gtk.css
+        create: true
+    ~/.config/gtk-3.0/window_decorations.css:
+        path: config/gtk-3.0/window_decorations.css
+        create: true
+    ~/.config/kitty/kitty.conf:
+        path: config/kitty/kitty.conf
+        create: true
+    ~/.config/kitty/open-actions.conf:
+        path: config/kitty/open-actions.conf
+        create: true
+    ~/.config/kitty/current-theme.conf:
+        path: config/kitty/current-theme.conf
         create: true
