@@ -1,3 +1,6 @@
+"prepend command (for comments etc)
+
+
 set runtimepath^=~/.vim runtimepath+=~/.vim/after
 let &packpath = &runtimepath
 
@@ -18,17 +21,20 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 
+set guifont=Consolas:h15
+
+
 call plug#begin('~/.config/nvim/plugins')
 
 Plug 'glepnir/dashboard-nvim'
 Plug 'glepnir/spaceline.vim'
+Plug 'romgrk/barbar.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 
 Plug 'NLKNguyen/papercolor-theme'
 "Plug 'vim-airline/vim-airline'
 "Plug 'vim-airline/vim-airline-themes'
-"
 Plug 'nathanaelkane/vim-indent-guides'
 
 Plug 'scrooloose/syntastic'
@@ -42,7 +48,8 @@ let g:indent_guides_enable_on_vim_startup = 1
 let g:spaceline_seperate_style = 'arrow'
 
 "terminal colours
-set t_Co=256
+set termguicolors
+"set t_Co=256
 
 "theme
 colorscheme PaperColor
