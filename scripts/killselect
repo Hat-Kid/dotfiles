@@ -1,2 +1,3 @@
 #!/bin/sh
+echo "Select the window to kill"
 xkill -id $(xwininfo | grep "Window id" | grep -oE "0x[0-9a-f]+")
