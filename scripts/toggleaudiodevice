@@ -1,13 +1,15 @@
 #!/usr/bin/zsh
-#curdev=$(pacmd list-sinks | grep -e '* index:')
-#curindex=$curdev[-1]
-dev=$(pacmd stat | grep -e "Default sink name: ")
-curdev=$dev[20,${#dev}]
-headset="alsa_output.usb-Kingston_HyperX_Virtual_Surround_Sound_00000000-00.iec958-stereo"
-speaker="alsa_output.pci-0000_27_00.1.hdmi-stereo-extra1"
+dev=$(pactl info | grep -e "Default Sink: ")
+curdev=$dev[15,${#dev}]
+devices=("${(@f)$(pactl list sinks | grep -e "Name: " | cut -d: -f2- | sed 's/^ *//g')}")
 
-if [ "$curdev" = "$headset" ]; then
-    pacmd set-default-sink "$speaker"
-elif [ "$curdev" = "$speaker" ]; then
-    pacmd set-default-sink "$headset"
-fi
+for ((i = 1; i <= $#devices; i++)); do
+    if [ "${devices[$i]}" = "$curdev" ] && [ $i -lt $#devices ]; then
+        pactl set-default-sink "${devices[$i + 1]}"
+        break
+    elif [ $i = $#devices ]; then
+        pactl set-default-sink "${devices[1]}"
+    else
+        continue
+    fi
+done
