@@ -1,10 +1,14 @@
-export TERMINAL=xterm-kitty
-export TERM=xterm-kitty
+if (( ${+DISPLAY} )); then
+    export TERMINAL=xterm-kitty
+    export TERM=xterm-kitty
+fi
 export PATH=$PATH:$HOME/.scripts:$HOME/bin:$HOME/.local/bin:$HOME/.emacs.d/bin
-export ZSH="/home/philip/.oh-my-zsh"
-export DOTNET_CLI_TELEMETRY_OUTPUT=1
-export EDITOR="nvim"
-export VISUAL="nvim"
+export ZSH=$HOME/.oh-my-zsh
+# export DOTNET_CLI_TELEMETRY_OUTPUT=1
+if type nvim > /dev/null; then
+    export EDITOR="nvim"
+    export VISUAL="nvim"
+fi
 export THCRAP_DIR="/mnt/HDD/game/touhou/game/thcrap"
 export QT_IM_MODULE=fcitx
 export XMODIFIERS=@im=fcitx
@@ -106,4 +110,7 @@ alias d="deletemark"
 alias p="showmarks"
 
 bashcompinit
-source /home/philip/.config/broot/launcher/bash/br
+
+if [[ -f $HOME/.config/broot/launcher/bash/br ]]; then 
+    source $HOME/.config/broot/launcher/bash/br
+fi
