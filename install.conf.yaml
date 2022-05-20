@@ -68,4 +68,7 @@
         create: true
     ~/.config/kitty/current-theme.conf:
         path: config/kitty/current-theme.conf
+        create: true    ~/.config/Thunar/uca.xml:
+        path: config/Thunar/uca.xml
         create: true
+

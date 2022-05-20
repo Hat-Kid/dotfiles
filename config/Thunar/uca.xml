@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+<action>
+	<icon>utilities-terminal</icon>
+	<name>Open Terminal Here</name>
+	<unique-id>1640553927495966-1</unique-id>
+	<command>i3-sensible-terminal %d</command>
+	<description>Open the terminal in the directory this file is contained in.</description>
+	<patterns>*</patterns>
+	<startup-notify/>
+	<audio-files/>
+	<image-files/>
+	<other-files/>
+	<text-files/>
+	<video-files/>
+</action>
+<action>
+	<icon>ark</icon>
+	<name>Extract Here</name>
+	<unique-id>1640558471925687-2</unique-id>
+	<command>7z x %f</command>
+	<description>Extract the selected archive in this directory.</description>
+	<patterns>*.zip;*.rar;*.7z;*.gz;*.tar;*.bz2</patterns>
+	<other-files/>
+</action>
+<action>
+	<icon>ark</icon>
+	<name>Extract In Folder</name>
+	<unique-id>1643064652839754-1</unique-id>
+	<command>7z x %f -o*</command>
+	<description>Create a folder and extract the selected archive in it.</description>
+	<patterns>*.zip;*.rar;*.7z;*.gz;*.tar;*.bz2</patterns>
+	<other-files/>
+</action>
+<action>
+	<icon>terminal</icon>
+	<name>Open Terminal Here</name>
+	<unique-id>1640988669617253-1</unique-id>
+	<command>i3-sensible-terminal %f</command>
+	<description>Open the terminal in this directory.</description>
+	<patterns>*</patterns>
+	<directories/>
+</action>
+<action>
+	<icon>terminal</icon>
+	<name>Open Terminal as Root</name>
+	<unique-id>1640994118112578-2</unique-id>
+	<command>gksudo i3-sensible-terminal %f</command>
+	<description>Open the terminal in the directory this file is contained in as root.</description>
+	<patterns>*</patterns>
+	<audio-files/>
+	<image-files/>
+	<other-files/>
+	<text-files/>
+	<video-files/>
+</action>
+<action>
+	<icon>folder-violet</icon>
+	<name>Open Folder as Root</name>
+	<unique-id>1640994849172752-3</unique-id>
+	<command>gksudo &quot;thunar %f&quot;</command>
+	<description>Open this directory in a new window as root.</description>
+	<patterns>*</patterns>
+	<directories/>
+</action>
+<action>
+	<icon>copyq</icon>
+	<name>Copy File Content to Clipboard</name>
+	<unique-id>1641059517091358-1</unique-id>
+	<command>cat %f | xclip -sel clip</command>
+	<description>Copies the content of the selected file to the clipoard.</description>
+	<patterns>*</patterns>
+	<audio-files/>
+	<image-files/>
+	<other-files/>
+	<text-files/>
+	<video-files/>
+</action>
+<action>
+	<icon>gcr-key</icon>
+	<name>Calculate SHA256 Sum</name>
+	<unique-id>1641466315845111-1</unique-id>
+	<command>zenity --info --text=$(sha256sum %f) --ok-label &quot;ok&quot;</command>
+	<description>Calculate the SHA256 checksum for this file.</description>
+	<patterns>*</patterns>
+	<audio-files/>
+	<image-files/>
+	<other-files/>
+	<text-files/>
+	<video-files/>
+</action>
+<action>
+	<icon>ark</icon>
+	<name>Open 7z Here</name>
+	<unique-id>1646735342986525-1</unique-id>
+	<command>7zFM %f</command>
+	<description>Opens 7z in the current directory.</description>
+	<patterns>*</patterns>
+	<directories/>
+</action>
+<action>
+	<icon>gnome-mpv</icon>
+	<name>Compress to h264</name>
+	<unique-id>1643475079201807-1</unique-id>
+	<command>ffmpeg -i %f -c:v h264_nvenc -crf 24 %f_c.mp4</command>
+	<description>Compress selected video file to h264_nvenc using ffmpeg.</description>
+	<patterns>*</patterns>
+	<video-files/>
+</action>
+<action>
+	<icon>disk-usage-analyzer</icon>
+	<name>Disk Usage...</name>
+	<unique-id>1646305477502329-1</unique-id>
+	<command>baobab %f</command>
+	<description>View the disk usage of the selected directory.</description>
+	<patterns>*</patterns>
+	<directories/>
+	<other-files/>
+</action>
+<action>
+	<icon>disk-utility</icon>
+	<name>Disk Usage (Dialog)...</name>
+	<unique-id>1649517689396984-1</unique-id>
+	<command>du -h -c %N | grep total | zenity --text-info or du -chs %N | zenity --text-info</command>
+	<description>Display a dialog with the disk usage of the selected folder.</description>
+	<patterns>*</patterns>
+	<directories/>
+	<audio-files/>
+	<image-files/>
+	<other-files/>
+	<text-files/>
+	<video-files/>
+</action>
+<action>
+	<icon>accessories-text-editor</icon>
+	<name>Download Subtitles...</name>
+	<unique-id>1646309241818391-2</unique-id>
+	<command>periscope -l en %F &amp;&amp; zenity --info --title &quot;Done&quot; --text &quot;Subtitles downloaded successfully&quot; || zenity --error --title &quot;Error&quot; --text &quot;Subtitles not downloaded successfully&quot;</command>
+	<description>Try to download English subtitles for this video using Periscope.</description>
+	<patterns>*</patterns>
+	<video-files/>
+</action>
+<action>
+	<icon>krename</icon>
+	<name>Rename Subtitles...</name>
+	<unique-id>1646309455991450-3</unique-id>
+	<command>subrnm %F</command>
+	<description>Rename subtitles file to match video file.</description>
+	<patterns>*.avi;*.mp4;*.mkv;*.crdownload;*.srt;*.sub</patterns>
+	<other-files/>
+	<text-files/>
+	<video-files/>
+</action>
+<action>
+	<icon>gtk-cancel</icon>
+	<name>Delete...</name>
+	<unique-id>1644505564563843-2</unique-id>
+	<command>zenity --question --text &quot;Are you sure you wish to delete %N?&quot; &amp;&amp; rm -rf %F || exit 1</command>
+	<description>Permanently delete the selected item(s).</description>
+	<patterns>*</patterns>
+	<audio-files/>
+	<image-files/>
+	<other-files/>
+	<text-files/>
+	<video-files/>
+</action>
+<action>
+	<icon>gtk-cancel</icon>
+	<name>Delete...</name>
+	<unique-id>1644505932525967-3</unique-id>
+	<command>zenity --question --text &quot;Are you sure you wish to delete %N and all their contents?&quot; &amp;&amp; rm -rf %F || exit 1</command>
+	<description>Permanently and recursively delete all selected directories.</description>
+	<patterns>*</patterns>
+	<directories/>
+</action>
+<action>
+	<icon>go-up</icon>
+	<name>Move To Parent Folder</name>
+	<unique-id>1644505092492008-1</unique-id>
+	<command>mv %f ../</command>
+	<description>Move the selected item to the parent folder.</description>
+	<patterns>*</patterns>
+	<directories/>
+	<audio-files/>
+	<image-files/>
+	<other-files/>
+	<text-files/>
+	<video-files/>
+</action>
+</actions>
