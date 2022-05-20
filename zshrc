@@ -25,6 +25,7 @@ HIST_STAMPS="dd.mm.yyyy"
 set -o extendedglob
 
 plugins=(git autoupdate zshmarks zsh-autosuggestions colorize colored-man-pages zsh-syntax-highlighting)
+fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
 source $ZSH/oh-my-zsh.sh
 
 autoload -U compinit
