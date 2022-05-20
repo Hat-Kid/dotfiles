@@ -5,13 +5,15 @@ good_bg = "#4A8B3F"
 idle_fg = "#FFFFFF"
 info_bg = "#B46442"
 warning_bg = "#FDD500"
+warning_fg = "#000000"
 critical_bg = "#F44747"
+separator = " "
 [icons]
 name = "awesome"
 
 [[block]]
 block = "focused_window"
-max_width = 20
+max_width = 30
 show_marks = "visible"
 
 [[block]]
@@ -78,6 +80,7 @@ on_click = "toggleaudiodevice"
 [block.mappings]
 "alsa_output.pci-0000_27_00.1.hdmi-stereo-extra1" = "Speakers"
 "alsa_output.usb-Kingston_HyperX_Virtual_Surround_Sound_00000000-00.iec958-stereo" = "Headphones"
+"bluez_output.14_3F_A6_40_F1_E2.a2dp-sink" = "Bluetooth"
 
 [[block]]
 block = "net"
