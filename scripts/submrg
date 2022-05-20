@@ -1,0 +1,4 @@
+#!/bin/zsh
+name=$1:t:r
+ext=$1:t:e
+mkvmerge -o "$name"_merge."$ext" "$1" "$2"
