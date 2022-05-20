@@ -218,13 +218,14 @@ bindsym $mod+t exec --no-startup-id thunar
 bindsym $mod+b exec --no-startup-id bgselect
 #bindsym $mod+e exec --no-startup-id emacsclient -c -a emacs
 
-exec_always --no-startup-id clipcatd
+#exec_always --no-startup-id clipcatd
+exec_always --no-startup-id parcellite
 
-set $launcher-clipboard-insert clipcat-menu insert
-set $launcher-clipboard-remove clipcat-menu remove
+#set $launcher-clipboard-insert clipcat-menu insert
+#set $launcher-clipboard-remove clipcat-menu remove
 
-bindsym $mod+p exec $launcher-clipboard-insert
-bindsym $mod+o exec $launcher-clipboard-remove
+#bindsym $mod+p exec $launcher-clipboard-insert
+#bindsym $mod+o exec $launcher-clipboard-remove
 bindsym $mod+h exec --no-startup-id i3-sensible-terminal -e htop
 
 # class                 border    backgr.   text      indicator   child_border

@@ -24,7 +24,7 @@ HIST_STAMPS="dd.mm.yyyy"
 
 set -o extendedglob
 
-plugins=(git autoupdate zshmarks zsh-autosuggestions zsh-completions colorize colored-man-pages zsh-syntax-highlighting)
+plugins=(git autoupdate zshmarks zsh-autosuggestions colorize colored-man-pages zsh-syntax-highlighting)
 source $ZSH/oh-my-zsh.sh
 
 autoload -U compinit
@@ -38,14 +38,6 @@ if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='nvim'
 else
   export EDITOR='nvim'
-fi
-
-if type clipcat-menu >/dev/null 2>&1; then
-    alias clipedit=' clipcat-menu --finder=builtin edit'
-    alias clipdel=' clipcat-menu --finder=builtin remove'
-
-    bindkey -s '^\' "^Q clipcat-menu --finder=builtin insert ^J"
-    bindkey -s '^]' "^Q clipcat-menu --finder=builtin remove ^J"
 fi
 
 # Compilation flags
