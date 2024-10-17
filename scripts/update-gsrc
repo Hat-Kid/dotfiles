@@ -1,0 +1,3 @@
+#!/bin/bash
+cd ~/code/C++/jak-project
+python ./scripts/gsrc/update-from-decomp.py --game $1 --file $2

@@ -1,5 +1,5 @@
 [theme]
-name = "native"
+theme = "native"
 [theme.overrides]
 good_bg = "#4A8B3F"
 idle_fg = "#FFFFFF"
@@ -9,84 +9,159 @@ warning_fg = "#000000"
 critical_bg = "#F44747"
 separator = " "
 [icons]
-name = "awesome"
+icons = "awesome4"
+
+# [[block]]
+# block = "focused_window"
+# max_width = 30
+# show_marks = "visible"
+# format = "$title.str(max_w:30)"
+
+# mouse
+[[block]]
+block = "battery"
+driver = "upower"
+device = "battery_hidpp_battery_0"
+interval = 1
+format = "$percentage"
+full_format = "Full"
+missing_format = "" 
 
 [[block]]
-block = "focused_window"
-max_width = 30
-show_marks = "visible"
+block = "battery"
+driver = "upower"
+device = "battery_hidpp_battery_1"
+interval = 1
+format = "$percentage"
+full_format = "Full"
+missing_format = "" 
+
+[[block]]
+block = "battery"
+driver = "upower"
+device = "battery_hidpp_battery_2"
+interval = 1
+format = "$percentage"
+full_format = "Full"
+missing_format = "" 
+
+[[block]]
+block = "battery"
+driver = "upower"
+device = "battery_hidpp_battery_3"
+interval = 1
+format = "$percentage"
+full_format = "Full"
+missing_format = "" 
+
+[[block]]
+block = "battery"
+driver = "upower"
+device = "battery_hidpp_battery_4"
+interval = 1
+format = "$percentage"
+full_format = "Full"
+missing_format = "" 
+
+[[block]]
+block = "bluetooth"
+mac = "14:3F:A6:40:F1:E2" # WH-1000XM3
+disconnected_format = ""
+format = " $icon WH-1000XM3 $percentage $battery_icon "
+# format = " $icon WH-1000XM3 "
+[block.battery_state]
+"0..15" = "critical"
+"16..30" = "warning"
+"31..100" = "good"
+
+[[block]]
+block = "bluetooth"
+mac = "A0:AB:51:9D:94:5B" # DualSense
+disconnected_format = ""
+format = " $icon DualSense "
+[block.battery_state]
+"0..15" = "critical"
+"16..30" = "warning"
 
 [[block]]
 block = "temperature"
-collapsed = false
+# collapsed = false
+format_alt = " $icon "
 scale = "celsius"
-good = 40
 idle = 45
-info = 55
-warning = 70
+good = 55
+info = 65
+warning = 75
 chip = "k10temp-pci-00c3"
-format = "CPU: {average}C"
-interval = 0.35
+format = " $icon CPU: $average C "
+interval = 0.15
 
 [[block]]
 block = "custom"
 cycle = ["getgov", "getgov"]
-on_click = "sudo togglecpugov"
 interval = 0.5
+[[block.click]]
+button = "left"
+cmd = "togglecpuprofile"
 
 [[block]]
 block = "nvidia_gpu"
-label = "GPU:"
-show_utilization = false
-show_memory = false
-show_temperature = true
-show_power_draw = true
-show_clocks = false
-show_fan_speed = true
-interval = 0.65
+format = " $icon RTX 3070  $temperature  $fan_speed  $power.eng(unit_space:true) "
+interval = 1
 
 [[block]]
 block = "memory"
-display_type = "memory"
-clickable = true
-format_mem = "{mem_used} /{mem_total}"
-format_swap = "{swap_used} /{swap_total}"
-interval = 2
+format = " $icon $mem_used/$mem_total ($mem_used_percents) "
+interval = 0.2
+warning_mem = 77.4
 
 [[block]]
 block = "disk_space"
 path = "/"
 info_type = "used"
-format = "{icon} {used} /{total}"
-unit = "GB"
-alert = 90
-warning = 80
+format = " $icon $used/$total "
+alert = 100
+warning = 50
+[[block.click]]
+button = "left"
+cmd = "baobab"
 
-[[block]]
-block = "music"
-#player = "mpd"
-player = "vlc"
-hide_when_empty = true
-format = "{title}"
-buttons = ["play"]
+# [[block]]
+# block = "music"
+# player = "mpd"
+# player = "vlc"
+# hide_when_empty = true
+# format = "$title"
+# buttons = ["play"]
 
 [[block]]
 block = "sound"
 driver = "pulseaudio"
-format = "{output_name} {volume}"
+format = " $icon $output_name $volume "
 device_kind = "sink"
 max_vol = 100
-on_click = "toggleaudiodevice"
+[[block.click]]
+button = "left"
+cmd = "toggleaudiodevice"
 [block.mappings]
-"alsa_output.pci-0000_27_00.1.hdmi-stereo-extra1" = "Speakers"
-"alsa_output.usb-Kingston_HyperX_Virtual_Surround_Sound_00000000-00.iec958-stereo" = "Headphones"
+"alsa_output.pci-0000_01_00.1.hdmi-stereo" = "Speakers"
+"alsa_output.pci-0000_01_00.1.hdmi-stereo-extra1" = "Speakers"
+"alsa_output.pci-0000_01_00.1.5.hdmi-stereo-extra1" = "Speakers"
+"alsa_output.pci-0000_01_00.1.hdmi-stereo-extra2" = "Speakers"
+"alsa_output.pci-0000_01_00.1.hdmi-stereo-extra3" = "Speakers"
+"alsa_output.pci-0000_01_00.hdmi-surround71-extra1" = "Valve Index"
+"alsa_output.pci-0000_10_00.6.3.analog-stereo" = "Headphones"
+"alsa_output.pci-0000_10_00.6.3.analog-stereo.2" = "Headphones"
+"alsa_output.pci-0000_10_00.6.analog-stereo" = "Headphones"
+"alsa_output.pci-0000_11_00.6.analog-stereo" = "Headphones"
 "bluez_output.14_3F_A6_40_F1_E2.a2dp-sink" = "Bluetooth"
+"bluez_output.14_3F_A6_40_F1_E2.1" = "Bluetooth"
 
 [[block]]
 block = "net"
-device = "enp34s0"
-format = "{speed_down;_M*_b} {speed_up;_M*_b}"
-interval = 0.5
+device = "eno1"
+format = " $icon ^icon_net_down $speed_down.eng(hide_prefix:true, hide_unit:true, prefix:M, unit:b) ^icon_net_up $speed_up.eng(hide_prefix:true, hide_unit:true, prefix:M, unit:b) "
+interval = 0.2
 
 [[block]]
 block = "custom"
@@ -100,5 +175,5 @@ command = "uname -r"
 [[block]]
 block = "time"
 interval = 1
-format = "%d.%m.%Y %H:%M:%S"
+format = " $icon $timestamp.datetime(f:'%a %d.%m.%Y %H:%M:%S') "
 timezone = "Europe/Berlin"

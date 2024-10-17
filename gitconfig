@@ -1,3 +1,16 @@
 [user]
 	name = Hat Kid
 	email = 6624576+Hat-Kid@users.noreply.github.com
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[init]
+	defaultBranch = master
+[credential]
+	credentialStore = cache
+	cacheOptions = --timeout 3600
+	helper = /usr/lib/git-core/git-credential-libsecret
+[http]
+	postBuffer = 157286400

@@ -1,0 +1,2 @@
+#!/bin/bash
+strace screen -S tf -d -m "su - tfsrv; /home/tfsrv/tfserver/tf2/srcds_run -secured -timeout 0 +randommap -autoupdate -steam_dir /home/tfsrv/tfserver/steamcmd -steamcmd_script /home/tfsrv/tfserver/tf_ds.txt +sv_setsteamaccount 2295911DC7495A81288E6042E518BC78"

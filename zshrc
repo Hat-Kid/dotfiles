@@ -48,7 +48,7 @@ PROMPT="%B%F{207}%n%f%b:%F{45}%d%f %B%F{yellow}$%f%b "
 RPROMPT="[%F{40}%*%f]"
 
 setopt HIST_IGNORE_DUPS
-HISTSIZE=100000
+HISTSIZE=1000000
 SAVEHIST=$HISTSIZE
 
 if [[ -f ~/.playlists ]]; then
@@ -82,6 +82,7 @@ alias zshcfg="$EDITOR ~/.zshrc"
 alias vimcfg="$EDITOR ~/.config/nvim/init.vim"
 alias i3cfg="$EDITOR ~/.config/i3/config"
 alias i3statuscfg="$EDITOR ~/.config/i3status-rust/config.toml"
+alias autoexec="$EDITOR ~/.steam/steam/steamapps/common/team\ fortress\ 2/tf/cfg/overrides/autoexec.cfg"
 alias fstab="sudo $EDITOR /etc/fstab"
 alias sudo="sudo "
 alias piserver="ssh ubuntu@192.168.2.120 -p 255"
@@ -96,14 +97,42 @@ alias printeroff="sudo systemctl stop cups.service"
 alias startx="startx ~/.xinitrc"
 alias hg="kitty +kitten hyperlinked_grep"
 alias ccat="highlight -O ansi"
+alias task="go-task"
+alias vpn="mullvad-exclude"
+alias thunar="vpn thunar"
+alias jakdebug="cd /home/philip/code/git/pcsx2/release/pcsx2-qt; ./pcsx2-qt"
+alias winepfx="export WINEPREFIX=$(pwd)"
+alias tfl="cd /home/philip/code/git/jak-clones/TFL/jak-project"
+alias ptraceoff="echo 1 | sudo tee /proc/sys/kernel/yama/ptrace_scope"
+alias ptraceon="echo 0 | sudo tee /proc/sys/kernel/yama/ptrace_scope"
+alias tfsrv_start="sudo systemctl start tfsrv"
+alias tfsrv_restart="sudo systemctl restart tfsrv"
+alias tfsrv_stop="sudo systemctl stop tfsrv"
+
+unalias gk
 
 alias goto="jump"
 alias bm="bookmark"
 alias d="deletemark"
 alias p="showmarks"
 
+# devkitpro vars
+DEVKITPRO=/opt/devkitpro
+DEVKITARM=/opt/devkitpro/devkitARM
+DEVKITPPC=/opt/devkitpro/devkitPPC
+
 bashcompinit
 
 if [[ -f $HOME/.config/broot/launcher/bash/br ]]; then 
     source $HOME/.config/broot/launcher/bash/br
 fi
+
+export MANGOHUD=1
+export CMAKE_CXX_COMPILER_LAUNCHER=ccache
+export WEBKIT_DISABLE_DMABUF_RENDERER=1 # https://bugs.webkit.org/show_bug.cgi?id=259644
+
+# opam configuration
+[[ ! -r /home/philip/.opam/opam-init/init.zsh ]] || source /home/philip/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
+source /usr/share/nvm/init-nvm.sh
+
+zstyle ':completion:*:*:update-gsrc:*' file-patterns '%p:globbed-files'

@@ -1,0 +1,4 @@
+#!/bin/bash
+PORT=$1
+SRV="$(curl -s -4 ip.me):$1"
+echo -n $SRV | xclip -selection clipboard

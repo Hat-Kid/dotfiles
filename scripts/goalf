@@ -1,0 +1,2 @@
+#!/bin/bash
+exec /home/philip/code/C++/jak-project/build/tools/formatter "$@"

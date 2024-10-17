@@ -1,0 +1,7 @@
+#!/bin/bash
+cd ~/.scripts
+if ! [[ -z "$1" ]] && [[ -f "$1" ]] then
+    nvim $1
+else
+    printf "script "$1" not found\n"
+fi

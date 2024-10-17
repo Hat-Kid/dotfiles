@@ -1,0 +1,11 @@
+#!/bin/bash
+COUNT=$(ls | wc -l)
+ITER=0
+
+for f in ./*.zip; do
+    unzip "$f"
+    rm "$f"
+    printf "Unzipped %d/%d (%.2f%%)\n" $ITER $COUNT $(echo $(clisp -x -q "(format nil \"~,2f\" (* (/ $ITER $COUNT) 100))") | tr -d '"')
+    ((++ITER))
+done
+

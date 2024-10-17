@@ -68,9 +68,17 @@
         create: true
     ~/.config/kitty/current-theme.conf:
         path: config/kitty/current-theme.conf
-        create: true    ~/.config/Thunar/uca.xml:
         create: true
     ~/.config/Thunar/uca.xml:
         path: config/Thunar/uca.xml
         create: true
 
+- shell:
+    - [if [ -f $(which zsh) ]; then chsh -s $(which zsh); fi, Changing shell to zsh...]
+    - [if [ ! -d $HOME/.oh-my-zsh ]; then sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh); fi", Installing Oh My Zsh...]
+    - [if [ -f .zshrc-pre-oh-my-zsh ]; then rm .zshrc && mv .zshrc-pre-oh-my-zsh .zshrc; fi, Replacing omz default zshrc...]
+    - [git clone https://github.com/TamCore/autoupdate-oh-my-zsh-plugins.git $HOME/.oh-my-zsh/plugins/autoupdate, Installing autoupdate plugin...]
+    - [git clone https://github.com/jocelynmallon/zshmarks.git $HOME/.oh-my-zsh/plugins/zshmarks, Installing zshmarks plugin...]
+    - [git clone https://github.com/zsh-users/zsh-autosuggestions.git $HOME/.oh-my-zsh/plugins/zsh-autosuggestions, Installing zsh-autosuggestions plugin...]
+    - [git clone https://github.com/zsh-users/zsh-completions.git $HOME/.oh-my-zsh/plugins/zsh-completions, Installing zsh-completions plugin...]
+    - [git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $HOME/.oh-my-zsh/plugins/zsh-syntax-highlighting, Installing zsh-syntax-highlighting plugin...]

@@ -1,0 +1,2 @@
+#!/bin/bash
+sed 's/ /\n/g' $1 | sort | uniq | awk '{print length, $0}' | sort -nr | less

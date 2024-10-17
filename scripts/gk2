@@ -1,0 +1,2 @@
+#!/bin/bash
+/home/philip/code/C++/jak-project/build/game/gk --game jak2 -v -- -fakeiso -debug

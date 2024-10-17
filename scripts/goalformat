@@ -1,0 +1,40 @@
+#!/bin/bash
+
+PROHIBITED_LIST=("all-types.gc" "decompiler-macros.gc" "startup-jak1.gc" "startup-jak2.gc" "startup-jak3.gc" "startup-jakx.gc")
+FILENAME="$4"
+FILEPATH="$3"
+
+is_in_prohibited_list() {
+    for prohibited in "${PROHIBITED_LIST[@]}"; do
+        # printf "checking prohibited $prohibited against $FILENAME\n"
+        if [[ $FILENAME == "$prohibited" ]]; then
+            # printf "prohibited item!\n"
+            return 0
+        fi
+    done
+    return 1
+}
+
+contains_prohibited_path() {
+    if [[ $FILEPATH == *"goal_src/jak2"* || $FILEPATH == *"goal_src/jak3"* ]]; then
+        # printf "prohibited path!\n"
+        return 0
+    fi
+    return 1
+}
+
+main() {
+    if [[ "$#" -lt 4 ]]; then
+        printf "Usage: %s <arg1> <arg2> <arg3>\n" "$0" >&2
+        return 1
+    fi
+
+    if ! is_in_prohibited_list $FILEPATH && ! contains_prohibited_path $FILEPATH; then
+        if ! goalf "$1" "$2" "$3"; then
+            printf "Error: "$0" failed to run.\n" >&2
+            return 1
+        fi
+    fi
+}
+
+main "$@"
