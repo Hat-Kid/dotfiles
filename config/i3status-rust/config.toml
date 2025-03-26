@@ -22,7 +22,7 @@ icons = "awesome4"
 block = "battery"
 driver = "upower"
 device = "battery_hidpp_battery_0"
-interval = 1
+interval = 60
 format = "$percentage"
 full_format = "Full"
 missing_format = "" 
@@ -31,7 +31,7 @@ missing_format = ""
 block = "battery"
 driver = "upower"
 device = "battery_hidpp_battery_1"
-interval = 1
+interval = 60
 format = "$percentage"
 full_format = "Full"
 missing_format = "" 
@@ -40,7 +40,7 @@ missing_format = ""
 block = "battery"
 driver = "upower"
 device = "battery_hidpp_battery_2"
-interval = 1
+interval = 60
 format = "$percentage"
 full_format = "Full"
 missing_format = "" 
@@ -49,7 +49,7 @@ missing_format = ""
 block = "battery"
 driver = "upower"
 device = "battery_hidpp_battery_3"
-interval = 1
+interval = 60
 format = "$percentage"
 full_format = "Full"
 missing_format = "" 
@@ -58,7 +58,7 @@ missing_format = ""
 block = "battery"
 driver = "upower"
 device = "battery_hidpp_battery_4"
-interval = 1
+interval = 60
 format = "$percentage"
 full_format = "Full"
 missing_format = "" 
@@ -94,25 +94,30 @@ info = 65
 warning = 75
 chip = "k10temp-pci-00c3"
 format = " $icon CPU: $average C "
-interval = 0.15
+interval = 1.0
 
 [[block]]
 block = "custom"
 cycle = ["getgov", "getgov"]
-interval = 0.5
+interval = 2.0
 [[block.click]]
 button = "left"
 cmd = "togglecpuprofile"
 
 [[block]]
 block = "nvidia_gpu"
-format = " $icon RTX 3070  $temperature  $fan_speed  $power.eng(unit_space:true) "
+format = " $icon RTX 5080  $temperature  \uf863  $fan_speed $power.eng(unit_space:true) "
+interval = 2
+
+[[block]]
+block = "custom"
+command = "printf 'VRAM %s/%s\n' \"$(nvidia-smi --query-gpu=memory.used --format=csv,noheader)\" \"$(nvidia-smi --query-gpu=memory.total --format=csv,noheader)\""
 interval = 1
 
 [[block]]
 block = "memory"
 format = " $icon $mem_used/$mem_total ($mem_used_percents) "
-interval = 0.2
+interval = 0.5
 warning_mem = 77.4
 
 [[block]]
@@ -154,6 +159,8 @@ cmd = "toggleaudiodevice"
 "alsa_output.pci-0000_10_00.6.3.analog-stereo.2" = "Headphones"
 "alsa_output.pci-0000_10_00.6.analog-stereo" = "Headphones"
 "alsa_output.pci-0000_11_00.6.analog-stereo" = "Headphones"
+"alsa_output.pci-0000_01_00.1.pro-output-7" = "XV322QK KV"
+"alsa_output.pci-0000_01_00.1.pro-output-3" = "XV270"
 "bluez_output.14_3F_A6_40_F1_E2.a2dp-sink" = "Bluetooth"
 "bluez_output.14_3F_A6_40_F1_E2.1" = "Bluetooth"
 
@@ -161,7 +168,7 @@ cmd = "toggleaudiodevice"
 block = "net"
 device = "eno1"
 format = " $icon ^icon_net_down $speed_down.eng(hide_prefix:true, hide_unit:true, prefix:M, unit:b) ^icon_net_up $speed_up.eng(hide_prefix:true, hide_unit:true, prefix:M, unit:b) "
-interval = 0.2
+interval = 0.45
 
 [[block]]
 block = "custom"

@@ -1,5 +1,5 @@
 #!/bin/zsh
-bg=$(ls ~/Pictures/Backgrounds/*.(png|jpg|jpeg) | sxiv -tio)
+bg=$(ls ~/Pictures/Backgrounds/*.(png|jpg|jpeg) | nsxiv -tio)
 
 if [[ -z $bg ]]; then
     echo "You have to select an image!"

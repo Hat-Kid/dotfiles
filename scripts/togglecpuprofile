@@ -1,0 +1,12 @@
+#!/usr/bin/sh
+curgov=$(cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor)
+
+# if [[ "$curgov" = "conservative" ]] || [[ "$curgov" = "ondemand" ]] || [[ "$curgov" = "userspace" ]] || [[ "$curgov" = "schedutil" ]]; then
+#     cpupower frequency-set --governor powersave
+# fi
+
+if [ "$curgov" = "performance" ]; then
+    cpupower-gui profile 1GHz 
+elif [ "$curgov" = "powersave" ]; then
+    cpupower-gui profile Performance 
+fi

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PROHIBITED_LIST=("all-types.gc" "decompiler-macros.gc" "startup-jak1.gc" "startup-jak2.gc" "startup-jak3.gc" "startup-jakx.gc")
+PROHIBITED_LIST=("all-types.gc" "decompiler-macros.gc" "startup-jak1.gc" "startup-jak2.gc" "startup-jak3.gc" "startup-jakx.gc" "textures.gc" "tpages.gc" "goal-lib.gc")
 FILENAME="$4"
 FILEPATH="$3"
 

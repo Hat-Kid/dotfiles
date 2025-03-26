@@ -33,7 +33,7 @@ bindsym $mod+Shift+q kill
 
 bindsym $mod+Shift+d exec --no-startup-id dmenu_run
 #bindsym $mod+d exec "rofi -modi drun,run -show drun"
-bindsym $mod+d exec --no-startup-id rofi -m "DP-2" -show drun -display-drun "" -show-icons -run-shell-command '{terminal} -e zsh -ic "{cmd} && read"'
+bindsym $mod+d exec --no-startup-id rofi -m "HDMI-0" -dpi 139 -show drun -display-drun "" -show-icons -run-shell-command '{terminal} -e zsh -ic "{cmd} && read"'
 
 bindsym $mod+j focus left
 bindsym $mod+k focus down
@@ -159,6 +159,8 @@ bar {
             inactive_workspace #333333 #333333 #888888
             urgent_workspace #2F343A #900000 #FFFFFF
         }
+        # tray_output HDMI-0
+        # tray_output DP-2
         tray_output DP-4
 }
 
@@ -183,7 +185,7 @@ for_window [class="^steamwebhelper$"] floating enable
 # for_window [class="^mpv"] move to workspace $ws1
 for_window [class="hl2_linux"] move to workspace $ws1
 #for_window [class="^Wine$"] move to workspace $ws6
-for_window [class="(?i)gk"] floating enable, resize set 932 699
+for_window [class="(?i)gk"] floating enable, resize set 1500 1125
 
 for_window [class=".*"] border pixel 4
 
@@ -216,10 +218,12 @@ exec --no-startup-id xset -dpms
 exec --no-startup-id xset s noblank
 
 # Move current workspace to other monitor
-bindsym $mod+Tab exec python /home/philip/.scripts/cycle-workspace.py
+# bindsym $mod+Tab exec python /home/philip/.scripts/cycle-workspace.py
+bindsym $mod+Tab move workspace to output right
+bindsym $mod+shift+Tab move workspace to output left
 
 exec flameshot & disown
-bindsym Print exec --no-startup-id flameshot gui
+bindsym Print exec --no-startup-id flameshot-dpi
 bindsym $mod+shift+y exec --no-startup-id /home/philip/.scripts/clicker
 bindsym ctrl+shift+m exec --no-startup-id toggleaudiodevice
 #bindsym $mod+t exec --no-startup-id i3-sensible-terminal -e ranger
