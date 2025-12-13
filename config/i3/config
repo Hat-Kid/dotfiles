@@ -19,10 +19,11 @@ exec --no-startup-id nm-applet
 #set $refresh_i3status killall -SIGUSR1 i3status
 
 #bindsym $mod+XF86Launch5 exec --no-startup-id "playerctl --player=vlc,%any previous"
-bindsym XF86AudioPrev exec --no-startup-id "playerctl --player=vlc,%any prev"
-bindsym XF86AudioNext exec --no-startup-id "playerctl --player=vlc,%any next"
+bindsym XF86AudioPrev exec --no-startup-id "playerctl -p $(cat ~/.cache/current_player) prev"
+bindsym XF86AudioNext exec --no-startup-id "playerctl -p $(cat ~/.cache/current_player) next"
 #bindsym $mod+XF86Launch6 exec --nostartup-id toggleshuffle
-bindsym XF86AudioPlay exec --no-startup-id "playerctl --player=vlc,%any play-pause"
+# bindsym XF86AudioPlay exec --no-startup-id "playerctl --player=vlc,%any play-pause"
+bindsym XF86AudioPlay exec --no-startup-id "playerctl -p $(cat ~/.cache/current_player) play-pause"
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
@@ -33,7 +34,7 @@ bindsym $mod+Shift+q kill
 
 bindsym $mod+Shift+d exec --no-startup-id dmenu_run
 #bindsym $mod+d exec "rofi -modi drun,run -show drun"
-bindsym $mod+d exec --no-startup-id rofi -m "HDMI-0" -dpi 139 -show drun -display-drun "" -show-icons -run-shell-command '{terminal} -e zsh -ic "{cmd} && read"'
+bindsym $mod+d exec --no-startup-id rofi -m "HDMI-1" -dpi 139 -show drun -display-drun "" -show-icons -run-shell-command '{terminal} -e zsh -ic "{cmd} && read"'
 
 bindsym $mod+j focus left
 bindsym $mod+k focus down
@@ -61,7 +62,7 @@ bindsym $mod+Shift+Right move right
 bindsym $mod+f fullscreen toggle
 
 #bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
+#bindsym $mod+w layout tabbed
 #bindsym $mod+e layout toggle split
 
 bindsym $mod+Shift+space floating toggle
@@ -207,7 +208,8 @@ exec --no-startup-id /home/philip/Pictures/curbg/setbg
 exec_always --no-startup-id nomouseaccel
 exec --no-startup-id vibrance
 # exec --no-startup-id gpufancurve
-exec --no-startup-id dunst
+# exec --no-startup-id dunst
+exec --no-startup-id xfce4-notifyd
 exec --no-startup-id sudo cpupower frequency-set powersave
 exec --no-startup-id sudo nft -f /home/philip/Documents/misc/excludeTraffic.rules
 exec --no-startup-id /usr/lib/xfce-polkit/xfce-polkit
@@ -233,6 +235,7 @@ bindsym $mod+b exec --no-startup-id bgselect
 
 #exec_always --no-startup-id clipcatd
 exec_always --no-startup-id parcellite
+exec --no-startup-id paperview
 
 #set $launcher-clipboard-insert clipcat-menu insert
 #set $launcher-clipboard-remove clipcat-menu remove

@@ -1,0 +1,43 @@
+#!/bin/bash
+
+# if [[ ! -z $(pgrep -a -x paperview) ]]; then
+#     pkill -x paperview
+# fi
+# sleep .1
+
+scene_dir="/home/philip/Pictures/Backgrounds/scenes"
+scene0="fountain"
+scene1="fountain"
+scene2="fountain"
+speed="30"
+
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    --scene0)
+      scene0="$2"
+      shift 2
+      ;;
+    --scene1)
+      scene1="$2"
+      shift 2
+      ;;
+    --scene2)
+      scene2="$2"
+      shift 2
+      ;;
+    --speed)
+      speed="$2"
+      shift 2
+      ;;
+    *)
+      echo "unknown option: $1" >&2
+      exit 1
+      ;;
+  esac
+done
+
+~/code/git/paperview/paperview \
+  "$scene_dir/$scene0" $speed 0    0    3840 2160 \
+  "$scene_dir/$scene1" $speed 3840 0    3840 2160 \
+  "$scene_dir/$scene2" $speed 7680 0    3840 2160 &
+

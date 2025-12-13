@@ -129,8 +129,12 @@ fi
 
 export MANGOHUD=1
 export CMAKE_CXX_COMPILER_LAUNCHER=ccache
-export WEBKIT_DISABLE_DMABUF_RENDERER=1 # https://bugs.webkit.org/show_bug.cgi?id=259644
-export BROWSER=firefox
+# export WEBKIT_DISABLE_DMABUF_RENDERER=1 # https://bugs.webkit.org/show_bug.cgi?id=259644
+# export BROWSER=firefox
+
+# firefox hw accel
+export MOZ_DISABLE_RDD_SANDBOX=1
+export LIBVA_DRIVER_NAME=nvidia
 
 # opam configuration
 [[ ! -r /home/philip/.opam/opam-init/init.zsh ]] || source /home/philip/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null

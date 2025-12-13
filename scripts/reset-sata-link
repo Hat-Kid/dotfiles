@@ -1,0 +1,65 @@
+#!/bin/bash
+
+if [ "$(id -u)" -ne 0 ]; then
+    echo "Error: This script must be run as root."
+    exit 1
+fi
+
+mount_path="$1"
+
+if [ -z "$mount_path" ]; then
+    echo "mount path not provided, defaulting to /mnt/HDD"
+    mount_path="/mnt/HDD"
+fi
+
+# get device name
+device=$(findmnt -n -o SOURCE $mount_path)
+
+if [ -z "$device" ]; then
+    echo "error: no device mounted at $mount_path"
+    exit 1
+fi
+
+echo "got device $device"
+
+umount $mount_path
+if [ $? -ne 0 ]; then
+    echo "error: failed to unmount the device. exit code $?"
+    exit 1
+fi
+echo "device successfully unmounted"
+
+device_label=$(basename "$device")
+scsi_host=$(readlink -f /sys/class/block/"$device_label" | grep -o 'host[0-9]*')
+
+if [ -z "$scsi_host" ]; then
+    echo "Error: Could not determine SCSI host for $device_label."
+    exit 1
+fi
+echo "scsi host: $scsi_host"
+
+# delete device
+echo 1 > /sys/block/"$device_label"/device/delete
+if [ $? -ne 0 ]; then
+    echo "error: failed to delete the device. exit code $?"
+    exit 1
+fi
+echo "device $device_label successfully deleted"
+
+sleep 2
+
+# rescan
+echo "- - -" > /sys/class/scsi_host/"$scsi_host"/scan
+if [ $? -ne 0 ]; then
+    echo "error: failed to rescan SCSI bus for host $scsi_host. exit code $?"
+    exit 1
+fi
+echo "SCSI bus rescan completed for $scsi_host"
+
+sleep 10
+
+echo "remounting..."
+mount -a
+if [ -z $? ]; then
+    echo "remount successful"
+fi

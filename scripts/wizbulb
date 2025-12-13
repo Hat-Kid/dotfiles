@@ -1,0 +1,150 @@
+#!/usr/bin/env bash
+
+bulb_ip="wizd90df0"
+port=38899
+
+declare -A scenes=(
+  # static
+  [cozy]=6
+  [warm_white]=11
+  [daylight]=12
+  [cool_white]=13
+  [night_light]=14
+  [focus]=15
+  [relax]=16
+  [true_colors]=17
+  [tv_time]=18
+  [plantgrowth]=19
+  # dynamic
+  [ocean]=1
+  [romance]=2
+  [sunset]=3
+  [party]=4
+  [fireplace]=5
+  [forest]=7
+  [pastel_colors]=8
+  [spring]=20
+  [summer]=21
+  [fall]=22
+  [deepdive]=23
+  [jungle]=24
+  [mojito]=25
+  [club]=26
+  [christmas]=27
+  [halloween]=28
+  [candlelight]=29
+  [golden_white]=30
+  [pulse]=31
+  [steampunk]=32
+  # misc
+  [wake_up]=9
+  [bedtime]=10
+  [rhythm]=1000
+)
+
+static_ids=(
+  6 11 12 13 14 15 16 17 18 19
+)
+
+dynamic_ids=(
+  1 2 3 4 5 7 8 20 21 22 23 24 25 26 27 28 29 30 31 32
+)
+
+misc_ids=(
+  9 10 1000
+)
+
+in_set() {
+    local x="$1"; shift
+    local y
+    for y in "$@"; do
+        [[ "$x" == "$y" ]] && return 0
+    done
+    return 1
+}
+
+scene_kind() {
+    local name="$1"
+    local id="${scenes[$name]}"
+
+    [[ -n "$id" ]] || { echo unknown; return; }
+
+    if in_set "$id" "${static_ids[@]}"; then
+        echo static
+    elif in_set "$id" "${dynamic_ids[@]}"; then
+        echo dynamic
+    elif in_set "$id" "${misc_ids[@]}"; then
+        echo misc
+    else
+        echo unknown
+    fi
+}
+
+scene_name_to_id() {
+    local key
+    key=$(printf '%s' "$*" | tr '[:upper:]' '[:lower:]')
+    [[ -n "${scenes[$key]}" ]] || return 1
+    printf '%s\n' "${scenes[$key]}"
+}
+
+cmd="$1"
+shift
+
+case "$cmd" in
+  on)
+    payload='{"id":1,"method":"setState","params":{"state":true}}'
+    ;;
+  off)
+    payload='{"id":1,"method":"setState","params":{"state":false}}'
+    ;;
+  toggle)
+    state=$(echo -n '{"method":"getPilot","params":{}}' | socat - udp:"$bulb_ip":"$port" | jq -r ".result.state | not")
+    payload=$(printf '{"id":1,"method":"setState","params":{"state":%s}}' "$state")
+    ;;
+  dim)
+    payload=$(printf '{"id":1,"method":"setState","params":{"dimming":%d}}' "$1")
+    ;;
+  clr)
+    dim="$4"
+    if [ -z "$dim" ]; then
+      dim=$(echo -n '{"method":"getPilot","params":{}}' | socat - udp:"$bulb_ip":"$port" | jq -r ".result.dimming")
+    fi
+    payload=$(printf '{"id":1,"method":"setPilot","params":{"r":%d,"g":%d,"b":%d,"dimming":%d}}' \
+      "$1" "$2" "$3" "$dim")
+    ;;
+  scene)
+    name="$1"
+    sceneId=$(scene_name_to_id "$name")
+    sceneKind=$(scene_kind "$name")
+    if [ "$sceneKind" = "dynamic" ]; then
+      dim="$3"
+      if [ -z "$dim" ]; then
+        dim=$(echo -n '{"method":"getPilot","params":{}}' | socat - udp:"$bulb_ip":"$port" | jq -r ".result.dimming")
+      fi
+      payload=$(printf '{"id":1,"method":"setPilot","params":{"sceneId":%d, "speed":%d, "dimming":%d}}' \
+        "$sceneId" "$2" "$dim")
+    else
+      dim="$2"
+      if [ -z "$dim" ]; then
+        dim=$(echo -n '{"method":"getPilot","params":{}}' | socat - udp:"$bulb_ip":"$port" | jq -r ".result.dimming")
+      fi
+      payload=$(printf '{"id":1,"method":"setPilot","params":{"sceneId":%d,"dimming":%d}}' \
+        "$sceneId" "$dim")
+    fi
+    ;;
+  temp)
+    temp="$1"
+    dim="$2"
+    if [ -z "$dim" ]; then
+      dim=$(echo -n '{"method":"getPilot","params":{}}' | socat - udp:"$bulb_ip":"$port" | jq -r ".result.dimming")
+    fi
+    payload=$(printf '{"id":1,"method":"setPilot","params":{"temp":%d,"dimming":%d}}' \
+      "$temp" "$dim")
+    ;;
+  *)
+    echo "usage: $0 {on|off|toggle|clr|scene|temp r g b speed dim}" >&2
+    exit 1
+    ;;
+esac
+
+echo -n "$payload" | socat - udp:"$bulb_ip":"$port" 1> /dev/null

@@ -1,4 +1,5 @@
-#export PATH="$PATH:$HOME/.scripts:$HOME/.local/bin"
+#export PATH="$PATH:$HOME/.scripts:$HOME/.local/bin:$HOME/.cargo/bin"
 export GDK_SCALE=2
 export GDK_DPI_SCALE=0.5
 export STEAM_FORCE_DESKTOPUI_SCALING=1.5
+export TF_DIR="~/.steam/steam/steamapps/common/team fortress 2"

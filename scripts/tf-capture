@@ -1,0 +1,2 @@
+#!/bin/bash
+obs-vkcapture "$TF_DIR/tf_linux64" -steam -windowed -w 3840 -h 2160 -console -novid -nojoy -nosteamcontroller -nohltv -particles 1 -precachefontchars

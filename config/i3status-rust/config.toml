@@ -94,7 +94,7 @@ info = 65
 warning = 75
 chip = "k10temp-pci-00c3"
 format = " $icon CPU: $average C "
-interval = 1.0
+interval = 0.2
 
 [[block]]
 block = "custom"
@@ -105,6 +105,13 @@ button = "left"
 cmd = "togglecpuprofile"
 
 [[block]]
+block = "custom"
+format = "$icon $text"
+command = "python ~/.scripts/dsense-batt.py"
+hide_when_empty = true
+json = true
+
+[[block]]
 block = "nvidia_gpu"
 format = " $icon RTX 5080  $temperature  \uf863  $fan_speed $power.eng(unit_space:true) "
 interval = 2
@@ -112,12 +119,12 @@ interval = 2
 [[block]]
 block = "custom"
 command = "printf 'VRAM %s/%s\n' \"$(nvidia-smi --query-gpu=memory.used --format=csv,noheader)\" \"$(nvidia-smi --query-gpu=memory.total --format=csv,noheader)\""
-interval = 1
+interval = 2
 
 [[block]]
 block = "memory"
 format = " $icon $mem_used/$mem_total ($mem_used_percents) "
-interval = 0.5
+interval = 2
 warning_mem = 77.4
 
 [[block]]
@@ -165,10 +172,19 @@ cmd = "toggleaudiodevice"
 "bluez_output.14_3F_A6_40_F1_E2.1" = "Bluetooth"
 
 [[block]]
+block = "custom"
+command = "cat ~/.cache/current_player"
+interval = 0.5
+[[block.click]]
+button = "left"
+cmd = "bash -c 'players=( $(playerctl -l) ); cur=$(cat ~/.cache/current_player 2>/dev/null || echo ${players[0]}); for i in ${!players[@]}; do if [ ${players[$i]} = $cur ]; then next=${players[$(( (i+1)%${#players[@]} ))]}; break; fi; done; echo $next > ~/.cache/current_player'"
+# cmd = "bash -c 'players=( $(playerctl -l) ); cur=$(playerctl -l | head -n1); for i in ${!players[@]}; do if [ ${players[$i]} = $cur ]; then next=${players[$(( (i+1)%${#players[@]} ))]}; break; fi; done; echo $next > ~/.cache/current_player; playerctl -p $next metadata --format \"{{playerName}}\"'"
+
+[[block]]
 block = "net"
 device = "eno1"
 format = " $icon ^icon_net_down $speed_down.eng(hide_prefix:true, hide_unit:true, prefix:M, unit:b) ^icon_net_up $speed_up.eng(hide_prefix:true, hide_unit:true, prefix:M, unit:b) "
-interval = 0.45
+interval = 2
 
 [[block]]
 block = "custom"
@@ -178,6 +194,7 @@ interval = 1
 [[block]]
 block = "custom"
 command = "uname -r"
+interval = "once"
 
 [[block]]
 block = "time"
