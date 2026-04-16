@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PROHIBITED_LIST=("all-types.gc" "decompiler-macros.gc" "startup-jak1.gc" "startup-jak2.gc" "startup-jak3.gc" "startup-jakx.gc" "textures.gc" "tpages.gc" "goal-lib.gc" "pc-settings.gc")
+PROHIBITED_LIST=("all-types.gc" "decompiler-macros.gc" "startup-jak1.gc" "startup-jak2.gc" "startup-jak3.gc" "startup-jakx.gc" "textures.gc" "tpages.gc" "part-groups.gc" "goal-lib.gc" "pc-settings.gc")
 FILENAME="$4"
 FILEPATH="$3"
 
@@ -16,7 +16,7 @@ is_in_prohibited_list() {
 }
 
 contains_prohibited_path() {
-    if [[ $FILEPATH == *"goal_src/jak2"* || $FILEPATH == *"goal_src/jak3"* ]]; then
+    if [[ $FILEPATH == *"goal_src/jak2"* || $FILEPATH == *"goal_src/jak3"* || $FILEPATH == *"test/decompiler/reference"* ]]; then
         # printf "prohibited path!\n"
         return 0
     fi
