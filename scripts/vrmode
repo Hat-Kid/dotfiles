@@ -1,0 +1,27 @@
+#!/bin/sh
+DESK='DP-2: 1920x1080_165 +7680+0 {viewportin=3840x2160}, HDMI-1: 3840x2160_240 +0+0, DP-4: 3840x2160_144 +3840+0'
+VR='HDMI-1: 3840x2160_240 +0+0'
+
+mode=$1
+if [ -z "$mode" ]; then
+  n=$(xrandr --listactivemonitors | sed -n '1s/Monitors: //p')
+  [ "$n" -gt 1 ] && mode=vr || mode=desk
+fi
+
+case $mode in
+  vr)   mm=$VR ;;
+  desk) if pgrep -x vrcompositor >/dev/null; then
+          notify-send vrmode "close steamvr first"; exit 1
+        fi
+        mm=$DESK ;;
+  *)    echo "usage: vrmode [vr|desk]"; exit 1 ;;
+esac
+
+nvidia-settings -a CurrentMetaMode="$mm" >/dev/null || { notify-send vrmode "switch failed"; exit 1; }
+
+if [ "$mode" = desk ]; then
+  ~/Pictures/curbg/setbg
+  vibrance
+fi
+
+audionames

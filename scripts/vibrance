@@ -1,2 +1,4 @@
 #!/bin/zsh
-nvidia-settings -a "DigitalVibrance=512"
+nvidia-settings -a "[DPY:DP-2]/DigitalVibrance=512" \
+                -a "[DPY:DP-4]/DigitalVibrance=512" \
+                -a "[DPY:HDMI-1]/DigitalVibrance=0" >/dev/null

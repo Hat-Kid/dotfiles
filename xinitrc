@@ -18,14 +18,13 @@ export QT_SCALE_FACTOR=1.5
 
 xrandr --dpi 139
 
-xrdb ~/.Xresources
+# xrdb ~/.Xresources
 
 [[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
 
 noscreensaver
-i3
-#exec dbus-launch i3
-#dbus-exec i3
-
 eval $(gnome-keyring-daemon --start)
 export SSH_AUTH_SOCK
+exec i3
+#exec dbus-launch i3
+#dbus-exec i3

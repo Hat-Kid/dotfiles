@@ -17,52 +17,6 @@ icons = "awesome4"
 # show_marks = "visible"
 # format = "$title.str(max_w:30)"
 
-# mouse
-[[block]]
-block = "battery"
-driver = "upower"
-device = "battery_hidpp_battery_0"
-interval = 60
-format = "$percentage"
-full_format = "Full"
-missing_format = "" 
-
-[[block]]
-block = "battery"
-driver = "upower"
-device = "battery_hidpp_battery_1"
-interval = 60
-format = "$percentage"
-full_format = "Full"
-missing_format = "" 
-
-[[block]]
-block = "battery"
-driver = "upower"
-device = "battery_hidpp_battery_2"
-interval = 60
-format = "$percentage"
-full_format = "Full"
-missing_format = "" 
-
-[[block]]
-block = "battery"
-driver = "upower"
-device = "battery_hidpp_battery_3"
-interval = 60
-format = "$percentage"
-full_format = "Full"
-missing_format = "" 
-
-[[block]]
-block = "battery"
-driver = "upower"
-device = "battery_hidpp_battery_4"
-interval = 60
-format = "$percentage"
-full_format = "Full"
-missing_format = "" 
-
 [[block]]
 block = "bluetooth"
 mac = "14:3F:A6:40:F1:E2" # WH-1000XM3
@@ -103,6 +57,14 @@ interval = 2.0
 [[block.click]]
 button = "left"
 cmd = "togglecpuprofile"
+
+[[block]]
+block = "battery"
+device = "lamzu_mouse"
+driver = "sysfs"
+format = " Mouse $percentage "
+full_format = "Mouse 100% "
+interval = 60
 
 [[block]]
 block = "custom"
@@ -156,18 +118,20 @@ max_vol = 100
 button = "left"
 cmd = "toggleaudiodevice"
 [block.mappings]
+# BEGIN nvidia-eld
+"alsa_output.pci-0000_01_00.1.pro-output-3" = "XV270"
+"alsa_output.pci-0000_01_00.1.pro-output-7" = "XV322QK KV"
+"alsa_output.pci-0000_01_00.1.pro-output-8" = "MSI"
+# END nvidia-eld
 "alsa_output.pci-0000_01_00.1.hdmi-stereo" = "Speakers"
 "alsa_output.pci-0000_01_00.1.hdmi-stereo-extra1" = "Speakers"
 "alsa_output.pci-0000_01_00.1.5.hdmi-stereo-extra1" = "Speakers"
 "alsa_output.pci-0000_01_00.1.hdmi-stereo-extra2" = "Speakers"
 "alsa_output.pci-0000_01_00.1.hdmi-stereo-extra3" = "Speakers"
-"alsa_output.pci-0000_01_00.hdmi-surround71-extra1" = "Valve Index"
 "alsa_output.pci-0000_10_00.6.3.analog-stereo" = "Headphones"
 "alsa_output.pci-0000_10_00.6.3.analog-stereo.2" = "Headphones"
 "alsa_output.pci-0000_10_00.6.analog-stereo" = "Headphones"
 "alsa_output.pci-0000_11_00.6.analog-stereo" = "Headphones"
-"alsa_output.pci-0000_01_00.1.pro-output-7" = "XV322QK KV"
-"alsa_output.pci-0000_01_00.1.pro-output-3" = "XV270"
 "bluez_output.14_3F_A6_40_F1_E2.a2dp-sink" = "Bluetooth"
 "bluez_output.14_3F_A6_40_F1_E2.1" = "Bluetooth"
 
